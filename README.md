@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rutero Clasificado — Medellín
 
-## Getting Started
+Mapa interactivo de visitas comerciales para la fuerza de ventas. Visualiza 80 tiendas en Medellín clasificadas por volumen de compra, con detalle de cliente y venta del último mes al hacer click.
 
-First, run the development server:
+---
+
+## Features
+
+- Mapa interactivo con marcadores por tienda
+- Diferenciación visual por clasificación (A / AA / AAA)
+- Panel de detalle al hacer click en cada tienda
+- Venta del último mes con animación de conteo
+- Responsive — desktop y mobile
+- Animaciones con GSAP
+
+---
+
+## Clasificación de tiendas
+
+| Clasificación | Tiendas | Descripción |
+|---|---|---|
+| A | 27 | Mayor volumen de compra |
+| AA | 26 | Volumen de compra medio |
+| AAA | 27 | Menor volumen de compra |
+
+---
+
+## Stack
+
+- [Next.js 14](https://nextjs.org/) — App Router
+- [TypeScript](https://www.typescriptlang.org/)
+- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/) + [React Map GL](https://visgl.github.io/react-map-gl/)
+- [GSAP](https://gsap.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [PapaParse](https://www.papaparse.com/)
+
+---
+
+## Correr localmente
 
 ```bash
+git clone https://github.com/tu-usuario/rutero-clasificado.git
+cd rutero-clasificado
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [https://6a3735ed49c18a000837f596--rutero-diana.netlify.app/](https://6a3735ed49c18a000837f596--rutero-diana.netlify.app/) en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Datos
 
-To learn more about Next.js, take a look at the following resources:
+El CSV en `/public/data/stores.csv` incluye:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Campo | Descripción |
+|---|---|
+| Código | ID único de la tienda |
+| Nombre del Cliente | Razón social |
+| Dirección | Dirección física |
+| Coord. Geocaptura 1 | Longitud |
+| Coord. Geocaptura 2 | Latitud |
+| Venta ultimo mes | Venta en COP |
+| Clasificacion | A / AA / AAA |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
