@@ -9,4 +9,5 @@ export interface Store {
   lat: number   // Coord. Geocaptura 2
   lastMonthSales: number
   classification: Classification
+  visitDays: string
 }

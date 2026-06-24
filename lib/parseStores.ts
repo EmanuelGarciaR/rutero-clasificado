@@ -3,7 +3,7 @@ import { Store } from './types'
 
 export async function loadStores(): Promise<Store[]> {
   try {
-    const res = await fetch('/data/stores.csv')
+    const res = await fetch('/data/Ruta_diana_clasificada.csv')
     const text = await res.text()
     
     const { data } = Papa.parse(text, { header: true, skipEmptyLines: true })
@@ -15,10 +15,11 @@ export async function loadStores(): Promise<Store[]> {
         name: String(row['Nombre del Cliente'] || '').trim(),
         route: String(row['Ruta '] || '').trim(),
         address: String(row['Dirección'] || '').trim(),
-        lng: parseFloat(row['Coord. Geocaptura 1']),
-        lat: parseFloat(row['Coord. Geocaptura 2']),
+        lng: parseFloat(String(row['Coord. Geocaptura 1'] || '').replace(',', '.')),
+        lat: parseFloat(String(row['Coord. Geocaptura 2'] || '').replace(',', '.')),
         lastMonthSales: parseInt(String(row['Venta ultimo mes '] || '').replace(/\./g, '').trim()) || 0,
         classification: String(row['Clasificacion'] || '').trim() as Store['classification'],
+        visitDays: String(row['Dia de visita'] || '').trim(),
       }))
   } catch (error) {
     console.error("Error loading stores:", error)
