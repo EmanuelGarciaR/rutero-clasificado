@@ -13,10 +13,13 @@ export default function Home() {
   const [selectedStore, setSelectedStore] = useState<Store | null>(null)
   const [loading, setLoading] = useState(true)
   const [selectedRoute, setSelectedRoute] = useState<string>('ALL')
+  const [selectedClass, setSelectedClass] = useState<string>('ALL')
 
-  const filteredStores = selectedRoute === 'ALL' 
-    ? stores 
-    : stores.filter(s => s.visitDays === selectedRoute)
+  const filteredStores = stores.filter(s => {
+    const routeMatch = selectedRoute === 'ALL' || s.visitDays === selectedRoute
+    const classMatch = selectedClass === 'ALL' || s.classification === selectedClass
+    return routeMatch && classMatch
+  })
 
   useEffect(() => {
     async function init() {
@@ -44,6 +47,16 @@ export default function Home() {
           Rutero Diana
         </h1>
         <div className="flex items-center gap-4 pointer-events-auto">
+          <select 
+            value={selectedClass}
+            onChange={(e) => setSelectedClass(e.target.value)}
+            className="bg-slate-800/80 backdrop-blur border border-slate-700/50 text-slate-300 text-sm font-medium rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2 outline-none cursor-pointer"
+          >
+            <option value="ALL">Todas las tiendas</option>
+            <option value="A">A</option>
+            <option value="AA">AA</option>
+            <option value="AAA">AAA</option>
+          </select>
           <select 
             value={selectedRoute}
             onChange={(e) => setSelectedRoute(e.target.value)}
